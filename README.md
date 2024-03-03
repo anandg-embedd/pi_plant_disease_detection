@@ -9,3 +9,22 @@ Data augmentation is used to increase the size of training set and to get more d
 The model was trained using one of the machine learning methods CNN. Training was performed using  **VGG16, VGG19, AlexNet, InceptionV3 and ResNet50**. According to the results, the best model was selected.
 #### CNN
 A Convolutional Neural Network (ConvNet/CNN) is a Deep Learning algorithm which can take in an input image, assign importance (learnable weights and biases) to various aspects/objects in the image and be able to differentiate one from the other. The pre-processing required in a ConvNet is much lower as compared to other classification algorithms. While in primitive methods filters are hand-engineered, with enough training, ConvNets have the ability to learn these filters/characteristics.
+
+## Requierments 📦
+
+```bash
+pip install -r requirements.txt
+```
+
+## Classifier CLI Options 📋
+
+```bash
+--model     Model File Path                 #default: 'model/vehicle_model_saved.h5'
+--img       Image File Path                 #default: 'data/1.jpg'
+```
+
+Then You Just Need To Run This
+
+```bash
+python main.py --img PATH_TO_FILE --model MODEL_FILE
+```
