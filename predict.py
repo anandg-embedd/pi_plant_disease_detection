@@ -124,11 +124,24 @@ def main():
             if camerain == picamera:
                 # Convert Image To Numpy Array
                 camera = PiCamera()
+		camera.resolution = (img_width, img_height)
                 rawImage = PiRGBArray(camera)
                 time.sleep(0.1)
                 camera.capture(rawImage, format = "rgb")
                 disp_img = rawImage.array
+		camera.close()
                 image = img_pre_process(disp_img)
+                #camera = PiCamera()
+                #camera.resolution = (img_width, img_height)
+                #camera.start_preview()
+                #time.sleep(5) # hang for preview for 5 seconds
+                #camera.capture('data/1.jpg')
+                #camera.stop_preview()
+                #camera.close()
+                #time.sleep(5)
+                #print('load image')
+                #image = script.utils.load_image('data/1.jpg')
+                #disp_img=mpimg.imread('data/1.jpg')
             elif camerain == webcamera:
                 try:
                     check, frame = webcam.read()
@@ -145,10 +158,10 @@ def main():
                 image = script.utils.load_image(args.img)
                 disp_img=mpimg.imread(args.img)
             if tensor_lite_en == True:
-                import tensorflow as tf
+                from tflite_runtime.interpreter import Interpreter
 
                 # Load the TFLite model and allocate tensors.
-                interpreter = tf.lite.Interpreter(model_path="model.tflite")
+                interpreter = Interpreter(model_path="model.tflite")
                 interpreter.allocate_tensors()
 
                 # Get input and output tensors.
